@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .userform {
+            width: 550px;
+            border: 2px solid black;
+        }
+
+        
+        input {
+            height: 20px;
+            width: 90%;
+            border: 1px solid gray;
+            padding: 3px 10px;
+        }
+
+        span {
+            color: red;
+        }
+
+        .error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="userform">
+        <form action="#">
+            <div class="row">
+                <div><label for="">Password :</label></div>
+                <div>
+                    <input type="password" name="" id="pass" onblur="return checkpassword()"
+                        onkeyup="return checkPassPattern()">
+                </div>
+                <div>
+                    <span id="msg1"></span>
+                </div>
+            </div>
+            
+        
+        </form>
+    </div>
+
+    <script>
+        function checkpassword() {
+            var pass = document.getElementById("pass");
+           
+            if (pass.value == "") {
+                document.getElementById("msg1").innerHTML = "Enter Password";
+                pass.classList.add("error");
+                pass.focus();
+            }
+            
+            return false
+        }
+        function checkPassPattern() {
+            var pass = document.getElementById("pass");
+            var passptn = /^[a-zA-Z0-9!@?%&]{6,16}$/;
+           
+            if (passptn.test(pass.value)) {
+                document.getElementById("msg1").innerHTML = ""
+                pass.classList.remove("error")
+            } else {
+                document.getElementById("msg1").innerHTML = "Invalid Password";
+                pass.classList.add("error")
+            }
+            return false;
+        }
+        
+        
+    </script>
+</body>
+
+</html>
